@@ -1,0 +1,28 @@
+{
+  "required" : [ "department", "employee_name", "onboarding_request_id" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "department" : {
+      "title" : "department",
+      "description" : "The department of the employee",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "employee_name" : {
+      "title" : "employee_name",
+      "description" : "Name of the Employee",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "onboarding_request_id" : {
+      "title" : "onboarding_request_id",
+      "description" : "Employee Request Id",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

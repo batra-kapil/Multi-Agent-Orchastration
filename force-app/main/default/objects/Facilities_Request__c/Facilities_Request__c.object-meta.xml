@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Facilities Request</label>
+    <pluralLabel>Facilities Requests</pluralLabel>
+    <nameField>
+        <label>Facilities Request Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>FAC-{0000}</displayFormat>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Employee_Name__c</fullName>
+        <label>Employee Name</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>true</required>
+    </fields>
+    <fields>
+        <fullName>Office_Location__c</fullName>
+        <label>Office Location</label>
+        <type>Picklist</type>
+        <required>true</required>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Hyderabad</fullName><default>false</default></value>
+                <value><fullName>Mumbai</fullName><default>false</default></value>
+                <value><fullName>Delhi</fullName><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Onboarding_Request__c</fullName>
+        <label>Onboarding Request</label>
+        <type>Lookup</type>
+        <referenceTo>Onboarding_Request__c</referenceTo>
+        <relationshipName>Facilities_Requests</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Desk_Number__c</fullName>
+        <label>Desk Number</label>
+        <type>Text</type>
+        <length>50</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Parking_Slot__c</fullName>
+        <label>Parking Slot</label>
+        <type>Text</type>
+        <length>50</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Floor__c</fullName>
+        <label>Floor</label>
+        <type>Text</type>
+        <length>50</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <label>Status</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Pending</fullName><default>true</default></value>
+                <value><fullName>Assigned</fullName><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+</CustomObject>

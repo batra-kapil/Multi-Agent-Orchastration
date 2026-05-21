@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>IT Support Request</label>
+    <pluralLabel>IT Support Requests</pluralLabel>
+    <nameField>
+        <label>IT Support Request Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>IT-{0000}</displayFormat>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Employee_Name__c</fullName>
+        <label>Employee Name</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Issue_Type__c</fullName>
+        <label>Issue Type</label>
+        <type>Picklist</type>
+        <required>false</required>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>password_reset</fullName><default>false</default></value>
+                <value><fullName>software_access</fullName><default>false</default></value>
+                <value><fullName>hardware</fullName><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <label>Status</label>
+        <type>Picklist</type>
+        <required>false</required>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Open</fullName><default>true</default></value>
+                <value><fullName>Pending Approval</fullName><default>false</default></value>
+                <value><fullName>Escalated</fullName><default>false</default></value>
+                <value><fullName>Resolved</fullName><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <label>Notes</label>
+        <type>LongTextArea</type>
+        <length>2000</length>
+        <visibleLines>4</visibleLines>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Requires_Manager_Approval__c</fullName>
+        <label>Requires Manager Approval</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Chargeable__c</fullName>
+        <label>Chargeable</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Department__c</fullName>
+        <label>Department</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>false</required>
+    </fields>
+</CustomObject>

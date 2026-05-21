@@ -1,0 +1,10 @@
+{
+  "orgName": "kapilbatra company",
+  "edition": "Developer",
+  "features": ["Einstein1AIPlatform"],
+  "settings": {
+    "einsteinGptSettings" : {
+      "enableEinsteinGptPlatform" : true
+    }
+  }
+}

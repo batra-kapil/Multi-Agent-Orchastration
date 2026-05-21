@@ -1,0 +1,28 @@
+{
+  "required" : [ "department", "employee_name", "office_location" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "department" : {
+      "title" : "department",
+      "description" : "Department of the new employee. One of: Engineering, Finance, HR, Sales",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "employee_name" : {
+      "title" : "employee_name",
+      "description" : "Full name of the new employee being onboarded",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "office_location" : {
+      "title" : "office_location",
+      "description" : "Office location of the new employee. One of: Hyderabad, Mumbai, Delhi",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Onboarding_Request__c</fullName>
+    <label>Onboarding Request</label>
+    <type>Lookup</type>
+    <referenceTo>Onboarding_Request__c</referenceTo>
+    <relationshipName>HR_Setup_Requests</relationshipName>
+    <required>false</required>
+</CustomField>

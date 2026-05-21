@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>HR Setup Request</label>
+    <pluralLabel>HR Setup Requests</pluralLabel>
+    <nameField>
+        <label>HR Setup Request Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>HR-{0000}</displayFormat>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Employee_Name__c</fullName>
+        <label>Employee Name</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>true</required>
+    </fields>
+    <fields>
+        <fullName>Department__c</fullName>
+        <label>Department</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>true</required>
+    </fields>
+    <fields>
+        <fullName>Onboarding_Request__c</fullName>
+        <label>Onboarding Request</label>
+        <type>Lookup</type>
+        <referenceTo>Onboarding_Request__c</referenceTo>
+        <relationshipName>HR_Setup_Requests</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Welcome_Email_Sent__c</fullName>
+        <label>Welcome Email Sent</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Checklist_Assigned__c</fullName>
+        <label>Checklist Assigned</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>HR_System__c</fullName>
+        <label>HR System</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <label>Status</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Pending</fullName><default>true</default></value>
+                <value><fullName>Completed</fullName><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+</CustomObject>

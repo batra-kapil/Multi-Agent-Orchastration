@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <label>Complete Onboarding Summary</label>
+    <processType>AutoLaunchedFlow</processType>
+    <status>Active</status>
+
+    <variables>
+        <name>onboarding_request_id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>it_summary</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>hr_summary</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>facilities_summary</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>completion_confirmed</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value><booleanValue>false</booleanValue></value>
+    </variables>
+
+    <recordUpdates>
+        <name>Update_Onboarding_Record</name>
+        <label>Update Onboarding Record</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value><elementReference>onboarding_request_id</elementReference></value>
+        </filters>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value><stringValue>Completed</stringValue></value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IT_Status__c</field>
+            <value><elementReference>it_summary</elementReference></value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>HR_Status__c</field>
+            <value><elementReference>hr_summary</elementReference></value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Facilities_Status__c</field>
+            <value><elementReference>facilities_summary</elementReference></value>
+        </inputAssignments>
+        <object>Onboarding_Request__c</object>
+    </recordUpdates>
+
+    <assignments>
+        <name>Set_Confirmed</name>
+        <label>Set Confirmed</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <assignmentItems>
+            <assignToReference>completion_confirmed</assignToReference>
+            <operator>Assign</operator>
+            <value><booleanValue>true</booleanValue></value>
+        </assignmentItems>
+    </assignments>
+
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Update_Onboarding_Record</targetReference>
+        </connector>
+    </start>
+</Flow>

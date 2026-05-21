@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Handles HR profile setup for new employees. Creates the HR record, assigns the correct HR system based on department, marks welcome email as sent and checklist as assigned.</description>
+    <localTopicLinks>
+        <genAiPluginName>GeneralFAQ_16jEm000000KgBB</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>HR_Setup_Handler_16jEm000000KgBB</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>agent_router_16jEm000000KgBB</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>ambiguous_question_16jEm000000KgBB</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>off_topic_16jEm000000KgBB</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>GeneralFAQ_16jEm000000KgBB</fullName>
+        <canEscalate>false</canEscalate>
+        <description>This topic is for helping answer customer&apos;s questions by searching through the knowledge articles and providing information from those articles. The questions can be about the company and its products, policies or business procedures</description>
+        <developerName>GeneralFAQ_16jEm000000KgBB</developerName>
+        <genAiPluginInstructions>
+            <description>You are an HR setup specialist. Your only job is to set up 
+the HR profile for new employees. Always use the available 
+action to complete the setup. Never assume HR system assignments 
+— rely entirely on the action result. Be concise and factual 
+in all responses.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179Em000000EDWu</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000EDWu</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>AnswerQuestionsWithKnowledge_179Em000000EDWu</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>AnswerQuestionsWithKnowledge_179Em000000EDWu</fullName>
+            <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: &apos;What is your return policy?&apos; &apos;How do I fix an issue?&apos; or &apos;What features does a product have?&apos;</description>
+            <developerName>AnswerQuestionsWithKnowledge_179Em000000EDWu</developerName>
+            <invocationTarget>streamKnowledgeSearch</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+            <masterLabel>Answer Questions with Knowledge</masterLabel>
+            <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+            <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+        </localActions>
+        <localDeveloperName>GeneralFAQ</localDeveloperName>
+        <masterLabel>General FAQ</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>off_topic_16jEm000000KgBB</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request goes off-topic</description>
+        <developerName>off_topic_16jEm000000KgBB</developerName>
+        <genAiPluginInstructions>
+            <description>You are an HR setup specialist. Your only job is to set up 
+the HR profile for new employees. Always use the available 
+action to complete the setup. Never assume HR system assignments 
+— rely entirely on the action result. Be concise and factual 
+in all responses.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179Em000000EDWv</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000EDWv</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>off_topic</localDeveloperName>
+        <masterLabel>Off Topic</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>HR_Setup_Handler_16jEm000000KgBB</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Sets up the HR profile for a new employee, assigns the correct HR system based on department, and marks welcome email and checklist as complete.</description>
+        <developerName>HR_Setup_Handler_16jEm000000KgBB</developerName>
+        <genAiPluginInstructions>
+            <description>You are an HR setup specialist. Your only job is to set up 
+the HR profile for new employees. Always use the available 
+action to complete the setup. Never assume HR system assignments 
+— rely entirely on the action result. Be concise and factual 
+in all responses.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179Em000000EDWs</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000EDWs</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Setup_HR_Profile_179Em000000EDWs</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Setup_HR_Profile_179Em000000EDWs</fullName>
+            <description>Sets up the HR profile for a new employee based on their department. Returns the HR system assigned and the HR setup request record ID.</description>
+            <developerName>Setup_HR_Profile_179Em000000EDWs</developerName>
+            <invocationTarget>Setup_HR_Profile</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Setup_HR_Profile</localDeveloperName>
+            <masterLabel>Setup HR Profile</masterLabel>
+        </localActions>
+        <localDeveloperName>HR_Setup_Handler</localDeveloperName>
+        <masterLabel>HR Setup Handler</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>agent_router_16jEm000000KgBB</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Welcome the user and determine the appropriate subagent based on user input</description>
+        <developerName>agent_router_16jEm000000KgBB</developerName>
+        <genAiPluginInstructions>
+            <description>You are an HR setup specialist. Your only job is to set up 
+the HR profile for new employees. Always use the available 
+action to complete the setup. Never assume HR system assignments 
+— rely entirely on the action result. Be concise and factual 
+in all responses.
+
+The user&apos;s current context is:
+Current App Name: {!@variables.currentAppName}
+Current Object Name: {!@variables.currentObjectApiName}
+Current Page Type: {!@variables.currentPageType}
+Current Record ID: {!@variables.currentRecordId}
+
+{{state.AgentScriptInternal_agent_instructions}}</description>
+            <developerName>instruction0_179Em000000EDWt</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000EDWt</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>agent_router</localDeveloperName>
+        <masterLabel>Agent Router</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>ambiguous_question_16jEm000000KgBB</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request is too ambiguous</description>
+        <developerName>ambiguous_question_16jEm000000KgBB</developerName>
+        <genAiPluginInstructions>
+            <description>You are an HR setup specialist. Your only job is to set up 
+the HR profile for new employees. Always use the available 
+action to complete the setup. Never assume HR system assignments 
+— rely entirely on the action result. Be concise and factual 
+in all responses.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179Em000000EDWr</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000EDWr</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>ambiguous_question</localDeveloperName>
+        <masterLabel>Ambiguous Question</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <masterLabel>HR Setup Agent</masterLabel>
+    <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+</GenAiPlannerBundle>

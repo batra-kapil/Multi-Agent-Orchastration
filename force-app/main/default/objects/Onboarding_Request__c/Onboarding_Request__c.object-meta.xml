@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Onboarding Request</label>
+    <pluralLabel>Onboarding Requests</pluralLabel>
+    <nameField>
+        <label>Onboarding Request Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>ONB-{0000}</displayFormat>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Employee_Name__c</fullName>
+        <label>Employee Name</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>true</required>
+    </fields>
+    <fields>
+        <fullName>Department__c</fullName>
+        <label>Department</label>
+        <type>Picklist</type>
+        <required>true</required>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Engineering</fullName><default>false</default></value>
+                <value><fullName>Finance</fullName><default>false</default></value>
+                <value><fullName>HR</fullName><default>false</default></value>
+                <value><fullName>Sales</fullName><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Office_Location__c</fullName>
+        <label>Office Location</label>
+        <type>Picklist</type>
+        <required>true</required>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Hyderabad</fullName><default>false</default></value>
+                <value><fullName>Mumbai</fullName><default>false</default></value>
+                <value><fullName>Delhi</fullName><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <label>Status</label>
+        <type>Picklist</type>
+        <required>true</required>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>In Progress</fullName><default>true</default></value>
+                <value><fullName>Completed</fullName><default>false</default></value>
+                <value><fullName>Failed</fullName><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>IT_Status__c</fullName>
+        <label>IT Status</label>
+        <type>Text</type>
+        <length>255</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>HR_Status__c</fullName>
+        <label>HR Status</label>
+        <type>Text</type>
+        <length>255</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Facilities_Status__c</fullName>
+        <label>Facilities Status</label>
+        <type>Text</type>
+        <length>255</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Summary__c</fullName>
+        <label>Summary</label>
+        <type>LongTextArea</type>
+        <length>2000</length>
+        <visibleLines>5</visibleLines>
+        <required>false</required>
+    </fields>
+</CustomObject>

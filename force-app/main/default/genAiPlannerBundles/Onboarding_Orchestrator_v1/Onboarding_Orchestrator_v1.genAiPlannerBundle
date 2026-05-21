@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Primary onboarding agent for Acme Corp. Collects new hire details and coordinates IT provisioning, HR setup, and facilities assignment by delegating to specialist agents. Provides a unified onboarding summary on completion.</description>
+    <localTopicLinks>
+        <genAiPluginName>GeneralFAQ_16jEm000000KgG1</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Onboarding_Handler_16jEm000000KgG1</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>agent_router_16jEm000000KgG1</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>ambiguous_question_16jEm000000KgG1</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>off_topic_16jEm000000KgG1</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>off_topic_16jEm000000KgG1</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request goes off-topic</description>
+        <developerName>off_topic_16jEm000000KgG1</developerName>
+        <genAiPluginInstructions>
+            <description>You are the Onboarding Orchestrator for Acme Corp. When a new 
+employee needs to be onboarded, collect their full name, 
+department, and office location. Then delegate to all three 
+specialist agents — IT Provisioning, HR Setup, and Facilities 
+— by calling each one in sequence. Wait for each to confirm 
+completion before moving to the next. Once all three are done, 
+call the Complete Onboarding Summary action to finalise the 
+record and provide a full summary to the HR manager. Never 
+skip any specialist agent. Never make up results.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179Em000000EDa5</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000EDa5</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>off_topic</localDeveloperName>
+        <masterLabel>Off Topic</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>agent_router_16jEm000000KgG1</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Welcome the user and determine the appropriate subagent based on user input</description>
+        <developerName>agent_router_16jEm000000KgG1</developerName>
+        <genAiPluginInstructions>
+            <description>You are the Onboarding Orchestrator for Acme Corp. When a new 
+employee needs to be onboarded, collect their full name, 
+department, and office location. Then delegate to all three 
+specialist agents — IT Provisioning, HR Setup, and Facilities 
+— by calling each one in sequence. Wait for each to confirm 
+completion before moving to the next. Once all three are done, 
+call the Complete Onboarding Summary action to finalise the 
+record and provide a full summary to the HR manager. Never 
+skip any specialist agent. Never make up results.
+
+The user&apos;s current context is:
+Current App Name: {!@variables.currentAppName}
+Current Object Name: {!@variables.currentObjectApiName}
+Current Page Type: {!@variables.currentPageType}
+Current Record ID: {!@variables.currentRecordId}
+
+{{state.AgentScriptInternal_agent_instructions}}</description>
+            <developerName>instruction0_179Em000000EDa6</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000EDa6</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>agent_router</localDeveloperName>
+        <masterLabel>Agent Router</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>GeneralFAQ_16jEm000000KgG1</fullName>
+        <canEscalate>false</canEscalate>
+        <description>This topic is for helping answer customer&apos;s questions by searching through the knowledge articles and providing information from those articles. The questions can be about the company and its products, policies or business procedures</description>
+        <developerName>GeneralFAQ_16jEm000000KgG1</developerName>
+        <genAiPluginInstructions>
+            <description>You are the Onboarding Orchestrator for Acme Corp. When a new 
+employee needs to be onboarded, collect their full name, 
+department, and office location. Then delegate to all three 
+specialist agents — IT Provisioning, HR Setup, and Facilities 
+— by calling each one in sequence. Wait for each to confirm 
+completion before moving to the next. Once all three are done, 
+call the Complete Onboarding Summary action to finalise the 
+record and provide a full summary to the HR manager. Never 
+skip any specialist agent. Never make up results.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179Em000000EDa9</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000EDa9</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>AnswerQuestionsWithKnowledge_179Em000000EDa9</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>AnswerQuestionsWithKnowledge_179Em000000EDa9</fullName>
+            <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: &apos;What is your return policy?&apos; &apos;How do I fix an issue?&apos; or &apos;What features does a product have?&apos;</description>
+            <developerName>AnswerQuestionsWithKnowledge_179Em000000EDa9</developerName>
+            <invocationTarget>streamKnowledgeSearch</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+            <masterLabel>Answer Questions with Knowledge</masterLabel>
+            <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+            <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+        </localActions>
+        <localDeveloperName>GeneralFAQ</localDeveloperName>
+        <masterLabel>General FAQ</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>ambiguous_question_16jEm000000KgG1</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request is too ambiguous</description>
+        <developerName>ambiguous_question_16jEm000000KgG1</developerName>
+        <genAiPluginInstructions>
+            <description>You are the Onboarding Orchestrator for Acme Corp. When a new 
+employee needs to be onboarded, collect their full name, 
+department, and office location. Then delegate to all three 
+specialist agents — IT Provisioning, HR Setup, and Facilities 
+— by calling each one in sequence. Wait for each to confirm 
+completion before moving to the next. Once all three are done, 
+call the Complete Onboarding Summary action to finalise the 
+record and provide a full summary to the HR manager. Never 
+skip any specialist agent. Never make up results.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179Em000000EDa7</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000EDa7</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>ambiguous_question</localDeveloperName>
+        <masterLabel>Ambiguous Question</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>Onboarding_Handler_16jEm000000KgG1</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Handles the end to end onboarding workflow. Creates the master onboarding record, delegates to IT, HR, and Facilities specialist agents, then completes the onboarding summary.</description>
+        <developerName>Onboarding_Handler_16jEm000000KgG1</developerName>
+        <genAiPluginInstructions>
+            <description>You are the Onboarding Orchestrator for Acme Corp. When a new 
+employee needs to be onboarded, collect their full name, 
+department, and office location. Then delegate to all three 
+specialist agents — IT Provisioning, HR Setup, and Facilities 
+— by calling each one in sequence. Wait for each to confirm 
+completion before moving to the next. Once all three are done, 
+call the Complete Onboarding Summary action to finalise the 
+record and provide a full summary to the HR manager. Never 
+skip any specialist agent. Never make up results.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179Em000000EDa8</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000EDa8</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Complete_Onboarding_Summary_179Em000000EDa8</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Create_Onboarding_Request_179Em000000EDa8</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Complete_Onboarding_Summary_179Em000000EDa8</fullName>
+            <description>Updates the master onboarding request record with results from all three specialist agents and marks the onboarding as complete.</description>
+            <developerName>Complete_Onboarding_Summary_179Em000000EDa8</developerName>
+            <invocationTarget>Complete_Onboarding_Summary</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Complete_Onboarding_Summary</localDeveloperName>
+            <masterLabel>Complete Onboarding Summary</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>Create_Onboarding_Request_179Em000000EDa8</fullName>
+            <description>Creates the master onboarding request record for the new hire. Returns the onboarding request ID used by all specialist agents.</description>
+            <developerName>Create_Onboarding_Request_179Em000000EDa8</developerName>
+            <invocationTarget>Create_Onboarding_Request</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Create_Onboarding_Request</localDeveloperName>
+            <masterLabel>Create Onboarding Request</masterLabel>
+        </localActions>
+        <localDeveloperName>Onboarding_Handler</localDeveloperName>
+        <masterLabel>Onboarding Handler</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <masterLabel>Onboarding Orchestrator</masterLabel>
+    <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+</GenAiPlannerBundle>

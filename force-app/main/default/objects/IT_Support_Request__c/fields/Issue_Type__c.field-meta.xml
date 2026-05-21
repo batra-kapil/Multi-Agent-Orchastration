@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Issue_Type__c</fullName>
+    <label>Issue Type</label>
+    <type>Picklist</type>
+    <required>false</required>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>password_reset</fullName><default>false</default></value>
+            <value><fullName>software_access</fullName><default>false</default></value>
+            <value><fullName>hardware</fullName><default>false</default></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,28 @@
+{
+  "required" : [ "employee_name", "onboarding_request_id", "office_location" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "employee_name" : {
+      "title" : "employee_name",
+      "description" : "Full name of the new employee being onboarded",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "office_location" : {
+      "title" : "office_location",
+      "description" : "Office location of the new employee. One of: Hyderabad, Mumbai, Delhi",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "onboarding_request_id" : {
+      "title" : "onboarding_request_id",
+      "description" : "Salesforce record ID of the master onboarding request",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

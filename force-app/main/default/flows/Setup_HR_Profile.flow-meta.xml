@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <label>Setup HR Profile</label>
+    <processType>AutoLaunchedFlow</processType>
+    <status>Active</status>
+
+    <variables>
+        <name>employee_name</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>department</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>onboarding_request_id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>hr_request_id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>hr_system</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+
+    <decisions>
+        <name>Check_Department_HR</name>
+        <label>Check Department</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <defaultConnectorLabel>Other</defaultConnectorLabel>
+        <defaultConnector>
+            <targetReference>Assign_Default_HR_System</targetReference>
+        </defaultConnector>
+        <rules>
+            <name>Finance_HR</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>department</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue><stringValue>Finance</stringValue></rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Finance_HR_System</targetReference>
+            </connector>
+            <label>Finance</label>
+        </rules>
+    </decisions>
+
+    <assignments>
+        <name>Assign_Finance_HR_System</name>
+        <label>Assign Finance HR System</label>
+        <locationX>50</locationX>
+        <locationY>278</locationY>
+        <assignmentItems>
+            <assignToReference>hr_system</assignToReference>
+            <operator>Assign</operator>
+            <value><stringValue>SAP SuccessFactors</stringValue></value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_HR_Record</targetReference>
+        </connector>
+    </assignments>
+
+    <assignments>
+        <name>Assign_Default_HR_System</name>
+        <label>Assign Default HR System</label>
+        <locationX>302</locationX>
+        <locationY>278</locationY>
+        <assignmentItems>
+            <assignToReference>hr_system</assignToReference>
+            <operator>Assign</operator>
+            <value><stringValue>Workday</stringValue></value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_HR_Record</targetReference>
+        </connector>
+    </assignments>
+
+    <assignments>
+        <name>Set_HR_ID_Output</name>
+        <label>Set HR ID Output</label>
+        <locationX>176</locationX>
+        <locationY>518</locationY>
+        <assignmentItems>
+            <assignToReference>hr_request_id</assignToReference>
+            <operator>Assign</operator>
+            <value><elementReference>Create_HR_Record</elementReference></value>
+        </assignmentItems>
+    </assignments>
+
+    <recordCreates>
+        <name>Create_HR_Record</name>
+        <label>Create HR Record</label>
+        <locationX>176</locationX>
+        <locationY>398</locationY>
+        <connector>
+            <targetReference>Set_HR_ID_Output</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Employee_Name__c</field>
+            <value><elementReference>employee_name</elementReference></value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Department__c</field>
+            <value><elementReference>department</elementReference></value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>HR_System__c</field>
+            <value><elementReference>hr_system</elementReference></value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Welcome_Email_Sent__c</field>
+            <value><booleanValue>true</booleanValue></value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Checklist_Assigned__c</field>
+            <value><booleanValue>true</booleanValue></value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value><stringValue>Completed</stringValue></value>
+        </inputAssignments>
+        <object>HR_Setup_Request__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Check_Department_HR</targetReference>
+        </connector>
+    </start>
+</Flow>

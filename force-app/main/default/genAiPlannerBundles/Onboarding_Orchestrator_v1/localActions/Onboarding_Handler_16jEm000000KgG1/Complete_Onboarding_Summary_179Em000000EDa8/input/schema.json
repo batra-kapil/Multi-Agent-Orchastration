@@ -1,0 +1,35 @@
+{
+  "required" : [ ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "facilities_summary" : {
+      "title" : "facilities_summary",
+      "description" : "Desk, floor, and parking confirmation returned by the Facilities Agent",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "hr_summary" : {
+      "title" : "hr_summary",
+      "description" : "HR system and setup confirmation returned by the HR Setup Agent",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "it_summary" : {
+      "title" : "it_summary",
+      "description" : "Systems provisioned confirmation returned by the IT Provisioning Agent",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "onboarding_request_id" : {
+      "title" : "onboarding_request_id",
+      "description" : "Salesforce record ID of the master onboarding request",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

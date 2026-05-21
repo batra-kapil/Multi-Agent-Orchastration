@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Handles desk and parking assignment for new employees based on their office location. Creates a facilities request record with desk number, floor, and parking slot details.</description>
+    <localTopicLinks>
+        <genAiPluginName>Facilities_Handler_16jEm000000KgCn</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>GeneralFAQ_16jEm000000KgCn</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>agent_router_16jEm000000KgCn</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>ambiguous_question_16jEm000000KgCn</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>off_topic_16jEm000000KgCn</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>agent_router_16jEm000000KgCn</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Welcome the user and determine the appropriate subagent based on user input</description>
+        <developerName>agent_router_16jEm000000KgCn</developerName>
+        <genAiPluginInstructions>
+            <description>You are a facilities assignment specialist. Your only job is 
+to assign desk and parking for new employees based on their 
+office location. Always use the available action to complete 
+the assignment. Never guess desk or parking numbers — rely 
+entirely on the action result. Be concise and factual.
+
+The user&apos;s current context is:
+Current App Name: {!@variables.currentAppName}
+Current Object Name: {!@variables.currentObjectApiName}
+Current Page Type: {!@variables.currentPageType}
+Current Record ID: {!@variables.currentRecordId}
+
+{{state.AgentScriptInternal_agent_instructions}}</description>
+            <developerName>instruction0_179Em000000E82b</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000E82b</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>agent_router</localDeveloperName>
+        <masterLabel>Agent Router</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>off_topic_16jEm000000KgCn</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request goes off-topic</description>
+        <developerName>off_topic_16jEm000000KgCn</developerName>
+        <genAiPluginInstructions>
+            <description>You are a facilities assignment specialist. Your only job is 
+to assign desk and parking for new employees based on their 
+office location. Always use the available action to complete 
+the assignment. Never guess desk or parking numbers — rely 
+entirely on the action result. Be concise and factual.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179Em000000E82c</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000E82c</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>off_topic</localDeveloperName>
+        <masterLabel>Off Topic</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>Facilities_Handler_16jEm000000KgCn</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Assigns desk number, floor, and parking slot for a new employee based on their office location and creates a facilities request record.</description>
+        <developerName>Facilities_Handler_16jEm000000KgCn</developerName>
+        <genAiPluginInstructions>
+            <description>You are a facilities assignment specialist. Your only job is 
+to assign desk and parking for new employees based on their 
+office location. Always use the available action to complete 
+the assignment. Never guess desk or parking numbers — rely 
+entirely on the action result. Be concise and factual.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179Em000000E82a</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000E82a</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Assign_Facilities_179Em000000E82a</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Assign_Facilities_179Em000000E82a</fullName>
+            <description>Assigns desk number, floor, and parking slot for a new employee based on their office location. Returns the desk number, floor, parking slot, and facilities request record ID.</description>
+            <developerName>Assign_Facilities_179Em000000E82a</developerName>
+            <invocationTarget>Assign_Facilities</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Assign_Facilities</localDeveloperName>
+            <masterLabel>Assign Facilities</masterLabel>
+        </localActions>
+        <localDeveloperName>Facilities_Handler</localDeveloperName>
+        <masterLabel>Facilities Handler</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>GeneralFAQ_16jEm000000KgCn</fullName>
+        <canEscalate>false</canEscalate>
+        <description>This topic is for helping answer customer&apos;s questions by searching through the knowledge articles and providing information from those articles. The questions can be about the company and its products, policies or business procedures</description>
+        <developerName>GeneralFAQ_16jEm000000KgCn</developerName>
+        <genAiPluginInstructions>
+            <description>You are a facilities assignment specialist. Your only job is 
+to assign desk and parking for new employees based on their 
+office location. Always use the available action to complete 
+the assignment. Never guess desk or parking numbers — rely 
+entirely on the action result. Be concise and factual.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179Em000000E82Z</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000E82Z</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>AnswerQuestionsWithKnowledge_179Em000000E82Z</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>AnswerQuestionsWithKnowledge_179Em000000E82Z</fullName>
+            <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: &apos;What is your return policy?&apos; &apos;How do I fix an issue?&apos; or &apos;What features does a product have?&apos;</description>
+            <developerName>AnswerQuestionsWithKnowledge_179Em000000E82Z</developerName>
+            <invocationTarget>streamKnowledgeSearch</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+            <masterLabel>Answer Questions with Knowledge</masterLabel>
+            <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+            <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+        </localActions>
+        <localDeveloperName>GeneralFAQ</localDeveloperName>
+        <masterLabel>General FAQ</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>ambiguous_question_16jEm000000KgCn</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request is too ambiguous</description>
+        <developerName>ambiguous_question_16jEm000000KgCn</developerName>
+        <genAiPluginInstructions>
+            <description>You are a facilities assignment specialist. Your only job is 
+to assign desk and parking for new employees based on their 
+office location. Always use the available action to complete 
+the assignment. Never guess desk or parking numbers — rely 
+entirely on the action result. Be concise and factual.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179Em000000E82d</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179Em000000E82d</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>ambiguous_question</localDeveloperName>
+        <masterLabel>Ambiguous Question</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <masterLabel>Facilities Agent</masterLabel>
+    <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+</GenAiPlannerBundle>
