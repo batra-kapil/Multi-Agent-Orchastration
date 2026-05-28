@@ -91,8 +91,14 @@ Multi-Agent-Orchastration/
 │               │   └── IT_Support_Request__c.object-meta.xml
 │               ├── HR_Setup_Request__c/
 │               │   └── HR_Setup_Request__c.object-meta.xml
-│               └── Facilities_Request__c/
-│                   └── Facilities_Request__c.object-meta.xml
+│               ├── Facilities_Request__c/
+│               │   └── Facilities_Request__c.object-meta.xml
+│               └── Contact/
+│                   └── fields/
+│                       ├── EmployeeNumber__c.field-meta.xml
+│                       ├── Has_MFA__c.field-meta.xml
+│                       ├── Under_Warranty__c.field-meta.xml
+│                       └── Password_Reset_Required__c.field-meta.xml
 └── README.md
 ```
 
@@ -365,7 +371,18 @@ sf project deploy start \
   --target-org your-org-alias
 ```
 
-### Step 4 — Deploy flows
+### Step 4 — Deploy Contact custom fields
+
+```bash
+sf project deploy start \
+  --metadata "CustomField:Contact.EmployeeNumber__c" \
+  --metadata "CustomField:Contact.Has_MFA__c" \
+  --metadata "CustomField:Contact.Under_Warranty__c" \
+  --metadata "CustomField:Contact.Password_Reset_Required__c" \
+  --target-org your-org-alias
+```
+
+### Step 5 — Deploy flows
 
 ```bash
 sf project deploy start \
@@ -375,11 +392,11 @@ sf project deploy start \
 
 > All five flows must deploy and activate successfully before building any agents.
 
-### Step 5 — Build agents in UI
+### Step 6 — Build agents in UI
 
 Build all four agents in the new Agent Builder following the configuration above. Deploy order: IT Provisioning Agent → HR Setup Agent → Facilities Agent → Onboarding Orchestrator.
 
-### Step 6 — Retrieve agent metadata (optional)
+### Step 7 — Retrieve agent metadata (optional)
 
 After building and activating all agents in the UI, retrieve the generated metadata:
 
