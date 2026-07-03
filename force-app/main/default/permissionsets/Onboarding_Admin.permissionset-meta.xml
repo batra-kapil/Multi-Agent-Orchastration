@@ -3,7 +3,22 @@
     <label>Onboarding Admin</label>
     <hasActivationRequired>false</hasActivationRequired>
 
-    <!-- Onboarding_Request__c optional fields -->
+    <!-- Onboarding_Request__c fields -->
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Onboarding_Request__c.Department__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Onboarding_Request__c.Office_Location__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Onboarding_Request__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Onboarding_Request__c.IT_Status__c</field>
@@ -25,15 +40,57 @@
         <readable>true</readable>
     </fieldPermissions>
 
-    <!-- HR_Setup_Request__c optional fields -->
+    <!-- IT_Support_Request__c fields -->
     <fieldPermissions>
         <editable>true</editable>
-        <field>HR_Setup_Request__c.HR_System__c</field>
+        <field>IT_Support_Request__c.Employee_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>HR_Setup_Request__c.Status__c</field>
+        <field>IT_Support_Request__c.Department__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IT_Support_Request__c.Issue_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IT_Support_Request__c.Notes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IT_Support_Request__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IT_Support_Request__c.Requires_Manager_Approval__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IT_Support_Request__c.Chargeable__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+
+    <!-- HR_Setup_Request__c fields -->
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HR_Setup_Request__c.Employee_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HR_Setup_Request__c.Department__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HR_Setup_Request__c.HR_System__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -48,11 +105,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>HR_Setup_Request__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>HR_Setup_Request__c.Onboarding_Request__c</field>
         <readable>true</readable>
     </fieldPermissions>
 
-    <!-- Facilities_Request__c optional fields -->
+    <!-- Facilities_Request__c fields -->
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Facilities_Request__c.Employee_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Facilities_Request__c.Office_Location__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Facilities_Request__c.Desk_Number__c</field>
@@ -60,12 +132,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Facilities_Request__c.Parking_Slot__c</field>
+        <field>Facilities_Request__c.Floor__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Facilities_Request__c.Floor__c</field>
+        <field>Facilities_Request__c.Parking_Slot__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -76,43 +148,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Facilities_Request__c.Onboarding_Request__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-
-    <!-- IT_Support_Request__c fields -->
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IT_Support_Request__c.Employee_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IT_Support_Request__c.Issue_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IT_Support_Request__c.Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IT_Support_Request__c.Notes__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IT_Support_Request__c.Requires_Manager_Approval__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IT_Support_Request__c.Chargeable__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IT_Support_Request__c.Department__c</field>
         <readable>true</readable>
     </fieldPermissions>
 
@@ -132,6 +167,15 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>IT_Support_Request__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>HR_Setup_Request__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -142,15 +186,6 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Facilities_Request__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>IT_Support_Request__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
 </PermissionSet>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Department__c</fullName>
+    <label>Department</label>
+    <type>Picklist</type>
+    <externalId>false</externalId>
+    <trackTrending>false</trackTrending>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Engineering</fullName><default>false</default><label>Engineering</label></value>
+            <value><fullName>Finance</fullName><default>false</default><label>Finance</label></value>
+            <value><fullName>HR</fullName><default>false</default><label>HR</label></value>
+            <value><fullName>Sales</fullName><default>false</default><label>Sales</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
