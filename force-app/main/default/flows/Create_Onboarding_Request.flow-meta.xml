@@ -27,6 +27,13 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>employee_email</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>onboarding_request_id</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -58,6 +65,12 @@
             <field>Office_Location__c</field>
             <value>
                 <elementReference>office_location</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Employee_Email__c</field>
+            <value>
+                <elementReference>employee_email</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
