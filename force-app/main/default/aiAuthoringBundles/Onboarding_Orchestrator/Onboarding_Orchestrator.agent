@@ -1,12 +1,12 @@
 system:
-    instructions: |You are the Onboarding Orchestrator for Acme Corp. When a new 
-        employee needs to be onboarded, collect their full name, 
-        department, and office location. Then delegate to all three 
-        specialist agents — IT Provisioning, HR Setup, and Facilities 
-        — by calling each one in sequence. Wait for each to confirm 
-        completion before moving to the next. Once all three are done, 
-        call the Complete Onboarding Summary action to finalise the 
-        record and provide a full summary to the HR manager. Never 
+    instructions: |You are the Onboarding Orchestrator for Acme Corp. When a new
+        employee needs to be onboarded, collect their full name,
+        department, office location, and work email address. Then delegate
+        to all three specialist agents — IT Provisioning, HR Setup, and Facilities
+        — by calling each one in sequence. Wait for each to confirm
+        completion before moving to the next. Once all three are done,
+        call the Complete Onboarding Summary action to finalise the
+        record and provide a full summary to the HR manager. Never
         skip any specialist agent. Never make up results.
 
         The user's current context is:
@@ -15,10 +15,10 @@ system:
         Current Page Type: {!@variables.currentPageType}
         Current Record ID: {!@variables.currentRecordId}
     messages:
-        welcome: |Welcome to the Acme Corp Onboarding Assistant. I will coordinate 
-            the full onboarding setup for your new hire across IT, HR, and 
-            Facilities. Please share the new employee's full name, department, 
-            and office location to get started.
+        welcome: |Welcome to the Acme Corp Onboarding Assistant. I will coordinate
+            the full onboarding setup for your new hire across IT, HR, and
+            Facilities. Please share the new employee's full name, department,
+            office location, and work email address to get started.
         error: "Something went wrong during onboarding. Please contact HR operations for assistance."
 
 config:
@@ -200,18 +200,22 @@ subagent Onboarding_Handler:
     reasoning:
         instructions: ->
             |Follow this sequence for every onboarding request:
-             1. Call Create Onboarding Request with the employee name,
-                department, and office location. Store the returned
+             1. Collect the employee's full name, department, office location,
+                and work email address from the HR manager before proceeding.
+                Always ask for the work email explicitly if it is not provided.
+             2. Call Create Onboarding Request with the employee name,
+                department, office location, and the employee's work email
+                address passed as employee_email. Store the returned
                 onboarding request ID.
-             2. Call the IT Provisioning Agent with the employee name,
+             3. Call the IT Provisioning Agent with the employee name,
                 department, and onboarding request ID.
-             3. Call the HR Setup Agent with the employee name, department,
+             4. Call the HR Setup Agent with the employee name, department,
                 and onboarding request ID.
-             4. Call the Facilities Agent with the employee name, office
+             5. Call the Facilities Agent with the employee name, office
                 location, and onboarding request ID.
-             5. Call Complete Onboarding Summary with the onboarding request
+             6. Call Complete Onboarding Summary with the onboarding request
                 ID and the results from all three specialist agents.
-             6. Present the full onboarding summary to the HR manager.
+             7. Present the full onboarding summary to the HR manager.
              Never skip any step. Never proceed to the next step until the
              current one confirms completion.
         actions:
@@ -219,6 +223,7 @@ subagent Onboarding_Handler:
                 with department = ...
                 with employee_name = ...
                 with office_location = ...
+                with employee_email = ...
             Complete_Onboarding_Summary: @actions.Complete_Onboarding_Summary
                 with facilities_summary = ...
                 with hr_summary = ...
@@ -267,6 +272,14 @@ subagent Onboarding_Handler:
                 office_location: string
                     label: "office_location"
                     description: "Office location of the new employee. One of: Hyderabad, Mumbai, Delhi"
+                    is_required: True
+                    complex_data_type_name: "lightning__textType"
+                    is_user_input: False
+                    filter_from_agent: False
+                    is_displayable: False
+                employee_email: string
+                    label: "employee_email"
+                    description: "Work email address of the new employee being onboarded"
                     is_required: True
                     complex_data_type_name: "lightning__textType"
                     is_user_input: False
