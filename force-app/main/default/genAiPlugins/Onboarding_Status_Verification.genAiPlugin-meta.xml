@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata">
+    <canEscalate>false</canEscalate>
+    <description>Handles identity verification and onboarding status lookup for TechCorp employees.</description>
+    <developerName>Onboarding_Status_Verification</developerName>
+    <genAiFunctions>
+        <functionName>Verify_OTP_And_Get_Onboarding_Status</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <developerName>verify_before_status</developerName>
+        <masterLabel>Verify before reporting status</masterLabel>
+        <description>Before checking any status, verify the employee&apos;s identity using OTP verification. Ask for the employee&apos;s work email first, then tell them an OTP was sent and ask them to enter it. Call the Verify OTP And Get Onboarding Status action to check the OTP and retrieve the status. Never generate, assume, or invent status information; only report what the action returns. You cannot create, modify, or delete any records, and you may only show the requesting employee their own data.</description>
+        <language>en_US</language>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Onboarding Status Verification</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Verify a new employee&apos;s identity using an OTP sent to their work email, then look up and report their IT, HR, Facilities, and overall onboarding status.</scope>
+</GenAiPlugin>

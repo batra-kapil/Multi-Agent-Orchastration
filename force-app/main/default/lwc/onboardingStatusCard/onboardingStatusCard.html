@@ -1,0 +1,79 @@
+<template>
+    <article class="slds-card onboarding-card">
+        <header class="onboarding-card__header">
+            <div class="onboarding-card__header-text">
+                <h2 class="onboarding-card__name">{employeeName}</h2>
+                <p class="onboarding-card__department">{department}</p>
+            </div>
+            <lightning-badge
+                label={officeLocation}
+                class="onboarding-card__location-badge"
+            ></lightning-badge>
+        </header>
+
+        <div class="slds-card__body slds-card__body_inner onboarding-card__body">
+            <div class="onboarding-card__section">
+                <div class="onboarding-card__section-title">
+                    <lightning-icon
+                        icon-name="utility:setup"
+                        size="x-small"
+                        class="onboarding-card__section-icon"
+                    ></lightning-icon>
+                    <span>IT Access</span>
+                </div>
+                <template if:true={itSystems.length}>
+                    <ul class="onboarding-card__tag-list">
+                        <template for:each={itSystems} for:item="system">
+                            <li key={system} class="onboarding-card__tag">{system}</li>
+                        </template>
+                    </ul>
+                </template>
+                <template if:false={itSystems.length}>
+                    <p class="onboarding-card__empty">No systems provisioned yet</p>
+                </template>
+            </div>
+
+            <div class="onboarding-card__section">
+                <div class="onboarding-card__section-title">
+                    <lightning-icon
+                        icon-name="utility:people"
+                        size="x-small"
+                        class="onboarding-card__section-icon"
+                    ></lightning-icon>
+                    <span>HR Setup</span>
+                </div>
+                <p class="onboarding-card__text">{hrStatus}</p>
+            </div>
+
+            <div class="onboarding-card__section">
+                <div class="onboarding-card__section-title">
+                    <lightning-icon
+                        icon-name="utility:location"
+                        size="x-small"
+                        class="onboarding-card__section-icon"
+                    ></lightning-icon>
+                    <span>Facilities</span>
+                </div>
+                <template if:true={facilitiesItems.length}>
+                    <ul class="onboarding-card__detail-list">
+                        <template for:each={facilitiesItems} for:item="item">
+                            <li key={item.key} class="onboarding-card__detail-item">
+                                <template if:true={item.label}>
+                                    <span class="onboarding-card__detail-label">{item.label}:</span>
+                                </template>
+                                <span class="onboarding-card__detail-value">{item.value}</span>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+                <template if:false={facilitiesItems.length}>
+                    <p class="onboarding-card__empty">No facilities details yet</p>
+                </template>
+            </div>
+        </div>
+
+        <footer class="onboarding-card__footer">
+            <span class={overallStatusBadgeClass}>{overallStatusLabel}</span>
+        </footer>
+    </article>
+</template>

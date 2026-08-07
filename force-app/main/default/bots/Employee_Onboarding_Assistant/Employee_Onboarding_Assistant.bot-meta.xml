@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bot xmlns="http://soap.sforce.com/2006/04/metadata">
+    <agentDSLEnabled>true</agentDSLEnabled>
+    <agentType>EinsteinServiceAgent</agentType>
+    <botMlDomain>
+        <label>Employee Onboarding Assistant</label>
+        <name>Employee_Onboarding_Assistant</name>
+    </botMlDomain>
+    <botSource>None</botSource>
+    <botUser>employee_onboarding_assistant@00dfj00000sbvno1857351380.ext</botUser>
+    <description>Self-service onboarding status and policy agent for new TechCorp employees</description>
+    <label>Employee Onboarding Assistant</label>
+    <logPrivateConversationData>false</logPrivateConversationData>
+    <richContentEnabled>true</richContentEnabled>
+    <sessionTimeout>0</sessionTimeout>
+    <type>ExternalCopilot</type>
+</Bot>

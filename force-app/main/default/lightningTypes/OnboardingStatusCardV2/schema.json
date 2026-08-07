@@ -1,0 +1,5 @@
+{
+  "description" : "Employee onboarding status summary rendered as a rich card in Agentforce Enhanced Chat.",
+  "lightning:type" : "@apexClassType/c__OnboardingStatusCardData",
+  "title" : "Onboarding Status Card"
+}

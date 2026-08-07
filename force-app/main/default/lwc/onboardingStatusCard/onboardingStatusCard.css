@@ -1,0 +1,163 @@
+:host {
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.onboarding-card {
+    background: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    max-width: 26rem;
+    width: 100%;
+}
+
+.onboarding-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    background: #1a2332;
+    color: #ffffff;
+    padding: 1rem 1.25rem;
+}
+
+.onboarding-card__header-text {
+    min-width: 0;
+}
+
+.onboarding-card__name {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    overflow-wrap: anywhere;
+}
+
+.onboarding-card__department {
+    margin: 0.15rem 0 0;
+    font-size: 0.8rem;
+    color: #c9d2e0;
+}
+
+.onboarding-card__location-badge {
+    flex-shrink: 0;
+    --slds-c-badge-color-background: #2f3b52;
+    --slds-c-badge-text-color: #ffffff;
+}
+
+.onboarding-card__body {
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.onboarding-card__section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #54698d;
+    margin-bottom: 0.4rem;
+}
+
+.onboarding-card__section-icon {
+    --sds-c-icon-color-foreground-default: #54698d;
+}
+
+.onboarding-card__text {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #2b2b2b;
+}
+
+.onboarding-card__empty {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-style: italic;
+    color: #8a8a8a;
+}
+
+.onboarding-card__tag-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.onboarding-card__tag {
+    background: #eef1f6;
+    color: #1a2332;
+    border-radius: 1rem;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.onboarding-card__detail-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.onboarding-card__detail-item {
+    font-size: 0.875rem;
+    color: #2b2b2b;
+}
+
+.onboarding-card__detail-label {
+    font-weight: 600;
+    color: #54698d;
+    margin-right: 0.25rem;
+}
+
+.onboarding-card__footer {
+    padding: 0.85rem 1.25rem 1.1rem;
+    border-top: 1px solid #ececec;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.onboarding-card__status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.85rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.onboarding-card__status-badge_completed {
+    background: #2e7d32;
+    color: #ffffff;
+}
+
+.onboarding-card__status-badge_in-progress {
+    background: #f4c542;
+    color: #4d3800;
+}
+
+@media (max-width: 480px) {
+    .onboarding-card {
+        max-width: 100%;
+    }
+
+    .onboarding-card__header {
+        flex-direction: column;
+    }
+
+    .onboarding-card__location-badge {
+        align-self: flex-start;
+    }
+}

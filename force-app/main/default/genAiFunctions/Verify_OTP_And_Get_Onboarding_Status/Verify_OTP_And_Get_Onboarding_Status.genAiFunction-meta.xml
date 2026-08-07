@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Verifies the employee&apos;s OTP and, if correct, retrieves their IT, HR, Facilities, and overall onboarding status</description>
+    <invocationTarget>OnboardingStatusService</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <masterLabel>Verify OTP And Get Onboarding Status</masterLabel>
+</GenAiFunction>
