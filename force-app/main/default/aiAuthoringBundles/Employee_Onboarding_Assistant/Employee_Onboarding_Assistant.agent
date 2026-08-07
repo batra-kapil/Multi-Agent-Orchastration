@@ -1,0 +1,141 @@
+config:
+    developer_name: "Employee_Onboarding_Assistant"
+    agent_label: "Employee Onboarding Assistant"
+    description: "Self-service onboarding status and policy agent for new TechCorp employees"
+    agent_type: "AgentforceServiceAgent"
+    default_agent_user: "employee_onboarding_assistant@00dfj00000sbvno1857351380.ext"
+
+variables:
+    employee_email: mutable string = ""
+        description: "Work email address provided by the employee for verification and status lookup"
+    entered_otp: mutable string = ""
+        description: "One-time passcode entered by the employee"
+    is_verified: mutable boolean = False
+        description: "Whether the employee's identity has been confirmed via OTP"
+    error_message: mutable string = ""
+        description: "Error message returned when OTP verification fails"
+
+system:
+    instructions:|
+        You are the TechCorp Employee Onboarding Assistant. You help new employees check their onboarding status and answer onboarding policy questions.
+        Before checking any status, verify the employee's identity using OTP verification.
+        You cannot create, modify, or delete any records. Only show the requesting employee their own data.
+        You must call the lookup_status action to retrieve the employee's status. Never generate, assume, or invent status information. Only report exactly what the action returns.
+    messages:
+        welcome: "Hi! I'm the TechCorp Onboarding Assistant. I can check your onboarding status or answer questions about onboarding policies. How can I help?"
+        error: "Sorry, something went wrong on my end. Let's try that again."
+
+start_agent topic_selector:
+    description: "Handles identity verification and onboarding status lookup directly; routes only policy questions to a separate subagent"
+
+    reasoning:
+        instructions: ->
+            | If the employee is asking a question about onboarding policies, procedures, or rules — not asking about their own personal status — transition to the Onboarding Policies subagent right now and do nothing else this turn.
+
+            | You must call lookup_status to verify identity and retrieve status. Never generate, assume, or invent status information.
+
+            # Step 1: Ask for email first. Stop.
+            if @variables.employee_email == "":
+                | Ask the employee for their work email address. Do not mention OTP yet.
+
+            # Step 2: Then ask for OTP, without disclosing it. Stop.
+            if @variables.employee_email != "" and @variables.entered_otp == "" and @variables.is_verified == False:
+                | Tell the employee an OTP has been sent to their email, then ask them to enter it here. Do not tell them what the code is. Ask this as a single direct instruction, not as a yes/no question.
+
+            # Step 3: Both present, not yet verified — call the action now. This is the only action available in this state.
+            if @variables.employee_email != "" and @variables.entered_otp != "" and @variables.is_verified == False:
+                | Call lookup_status right now, before writing any other words. You have no way to know whether the OTP is correct without calling it. Call the action yourself directly — never say "processing", "retrieving", "please wait", "verified", "checking", "confirming", or describe handing this off to any other system, agent, or subagent.
+
+            # Step 4: Wrong OTP — show the error and reset for another attempt.
+            if @variables.is_verified == False and @variables.error_message != "":
+                | Tell the employee: {!@variables.error_message} Ask them to enter the OTP again.
+                set @variables.entered_otp = ""
+                set @variables.error_message = ""
+
+            # Step 5: Verified — stay silent, the card renders automatically.
+            if @variables.is_verified == True:
+                | Do not output any text — the onboarding_status_card renders automatically and is the entire response. Do not restate, list, summarize, or describe any of the status details in your own words, do not greet, do not ask a follow-up question, and do not offer further help.
+
+        actions:
+            go_to_policies: @utils.transition to @subagent.Onboarding_Policies
+                description: "The employee is asking a question about onboarding policies, procedures, or rules — not asking about their own personal status"
+
+            collect_email: @utils.setVariables
+                description: "Capture the employee's work email address once they provide it"
+                with employee_email=...
+
+            collect_otp: @utils.setVariables
+                description: "Capture the one-time passcode the employee enters"
+                with entered_otp=...
+
+            lookup_status: @actions.Verify_OTP_And_Get_Onboarding_Status
+                description: "Verify the employee's OTP and retrieve their onboarding status, once both email and code are available"
+                available when @variables.employee_email != "" and @variables.entered_otp != "" and @variables.is_verified == False
+                with employee_email=@variables.employee_email
+                with entered_otp=@variables.entered_otp
+                set @variables.is_verified = @outputs.is_verified
+                set @variables.error_message = @outputs.error_message
+
+    actions:
+        Verify_OTP_And_Get_Onboarding_Status:
+            description: "Verifies the employee's OTP and, if correct, retrieves their IT, HR, Facilities, and overall onboarding status"
+            label: "Verify OTP And Get Onboarding Status"
+            include_in_progress_indicator: True
+            progress_indicator_message: "Verifying your identity..."
+            inputs:
+                employee_email: string
+                    description: "The employee's work email address"
+                    is_required: True
+                entered_otp: string
+                    description: "The one-time passcode entered by the employee"
+                    is_required: True
+            outputs:
+                is_verified: boolean
+                    description: "True if the entered OTP is correct"
+                error_message: string
+                    description: "Error message returned when the OTP is incorrect"
+                onboarding_status_card: object
+                    description: "Rich onboarding status card for display once identity is verified"
+                    complex_data_type_name: "c__OnboardingStatusCardV3"
+                    is_displayable: True
+                    filter_from_agent: False
+            target: "apex://OnboardingStatusService"
+            require_user_confirmation: False
+
+subagent Onboarding_Policies:
+    label: "Onboarding Policies"
+    description: "Answers employee questions about onboarding policies using the knowledge base"
+
+    actions:
+        AnswerQuestionsWithKnowledge:
+            description: "Searches the knowledge base and generates an answer to an onboarding policy question"
+            source: "EmployeeCopilot__AnswerQuestionsWithKnowledge"
+            inputs:
+                query: string
+                    description: "The employee's onboarding policy question"
+                    is_required: True
+                citationsUrl: string
+                    description: "The URL to use for citations for custom Agents"
+                    is_required: False
+                ragFeatureConfigId: string
+                    description: "The RAG Feature ID to use for grounding this action invocation"
+                    is_required: False
+                citationsEnabled: boolean
+                    description: "Whether or not citations are enabled"
+                    is_required: False
+            outputs:
+                knowledgeSummary: object
+                    description: "The generated answer based on knowledge articles"
+                    complex_data_type_name: "lightning__richTextType"
+                citationSources: object
+                    description: "Source links for the chunks used to generate the answer"
+                    complex_data_type_name: "@apexClassType/AiCopilot__GenAiCitationInput"
+            target: "standardInvocableAction://streamKnowledgeSearch"
+
+    reasoning:
+        instructions: ->
+            | Answer the employee's onboarding policy question using the knowledge base. If nothing relevant is found, say so honestly instead of guessing.
+        actions:
+            search_knowledge: @actions.AnswerQuestionsWithKnowledge
+                description: "Look up an answer to an onboarding policy question"
+                with query=...

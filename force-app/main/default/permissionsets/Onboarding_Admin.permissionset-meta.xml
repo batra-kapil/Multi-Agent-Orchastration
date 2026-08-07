@@ -3,6 +3,16 @@
     <label>Onboarding Admin</label>
     <hasActivationRequired>false</hasActivationRequired>
 
+    <!-- Apex class access -->
+    <classAccesses>
+        <apexClass>OnboardingStatusService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OnboardingStatusCardData</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+
     <!-- Onboarding_Request__c fields -->
     <fieldPermissions>
         <editable>true</editable>
@@ -37,6 +47,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Onboarding_Request__c.Summary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Onboarding_Request__c.Employee_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
 
