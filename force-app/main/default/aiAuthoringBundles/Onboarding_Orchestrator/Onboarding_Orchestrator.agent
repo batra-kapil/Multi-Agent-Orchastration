@@ -79,11 +79,20 @@ start_agent agent_router:
     reasoning:
         instructions: ->
             | Select the best tool to call based on conversation history and user's intent.
+            | Use {!@actions.go_to_Onboarding_Handler} when the user wants to onboard, set up, or start onboarding for a new hire or new employee, or provides any new hire details such as full name, department, office location, or work email address.
+            | If an onboarding is already in progress in this conversation, keep using {!@actions.go_to_Onboarding_Handler}. Short replies such as a name, a department like Engineering or Finance, a city like Hyderabad, Mumbai, or Delhi, an email address, or a confirmation like yes or ok are answers to the onboarding questions, not ambiguous or off-topic requests.
+            | Use {!@actions.go_to_GeneralFAQ} only when the user asks a general question about company policies, procedures, or products and is not providing or requesting new hire onboarding.
+            | Use {!@actions.go_to_ambiguous_question} only when the request could relate to onboarding or company information but is too vague to act on and no onboarding is in progress.
+            | Use {!@actions.go_to_off_topic} when the request is unrelated to employee onboarding or company information.
         actions:
             go_to_GeneralFAQ: @utils.transition to @subagent.GeneralFAQ
+                description: "General questions about company policies, procedures, or products that do not involve onboarding a new hire"
             go_to_off_topic: @utils.transition to @subagent.off_topic
+                description: "Requests unrelated to employee onboarding or company information"
             go_to_ambiguous_question: @utils.transition to @subagent.ambiguous_question
+                description: "Requests too vague to act on when no onboarding is in progress"
             go_to_Onboarding_Handler: @utils.transition to @subagent.Onboarding_Handler
+                description: "Onboarding a new hire, providing new hire details (name, department, office location, work email), or continuing an onboarding already in progress"
 
 subagent GeneralFAQ:
     label: "General FAQ"
@@ -203,17 +212,17 @@ subagent Onboarding_Handler:
              1. Collect the employee's full name, department, office location,
                 and work email address from the HR manager before proceeding.
                 Always ask for the work email explicitly if it is not provided.
-             2. Call Create Onboarding Request with the employee name,
+             2. Call {!@actions.Create_Onboarding_Request} with the employee name,
                 department, office location, and the employee's work email
                 address passed as employee_email. Store the returned
                 onboarding request ID.
-             3. Call the IT Provisioning Agent with the employee name,
+             3. Call {!@actions.IT_Provisioning_Agent} with the employee name,
                 department, and onboarding request ID.
-             4. Call the HR Setup Agent with the employee name, department,
+             4. Call {!@actions.HR_Setup_Agent} with the employee name, department,
                 and onboarding request ID.
-             5. Call the Facilities Agent with the employee name, office
+             5. Call {!@actions.Facilities_Agent} with the employee name, office
                 location, and onboarding request ID.
-             6. Call Complete Onboarding Summary with the onboarding request
+             6. Call {!@actions.Complete_Onboarding_Summary} with the onboarding request
                 ID and the results from all three specialist agents.
              7. Present the full onboarding summary to the HR manager.
              Never skip any step. Never proceed to the next step until the
@@ -356,7 +365,7 @@ connected_subagent IT_Provisioning_Agent:
         EndUserLanguage: string = @variables.EndUserLanguage
             description: "Language of the end user. Automatically populated by the agent."
         EndUserId: string = @variables.EndUserId
-            description: "Language of the end user. Automatically populated by the agent."
+            description: "Messaging end user ID of the user initiating the conversation. Automatically populated by the agent."
 
 connected_subagent HR_Setup_Agent:
     label: "HR Setup Agent"
@@ -370,7 +379,7 @@ connected_subagent HR_Setup_Agent:
         EndUserLanguage: string = @variables.EndUserLanguage
             description: "Language of the end user. Automatically populated by the agent."
         EndUserId: string = @variables.EndUserId
-            description: "Language of the end user. Automatically populated by the agent."
+            description: "Messaging end user ID of the user initiating the conversation. Automatically populated by the agent."
         ContactId: string = @variables.ContactId
             description: "Salesforce Contact ID of the end user initiating the conversation. Automatically populated by the agent."
         RoutableId: string = @variables.RoutableId
@@ -386,7 +395,7 @@ connected_subagent Facilities_Agent:
         and create the facilities request record.
     inputs:
         EndUserId: string = @variables.EndUserId
-            description: "Description"
+            description: "Messaging end user ID of the user initiating the conversation. Automatically populated by the agent."
 
         RoutableId: string = @variables.RoutableId
             description: |Routable ID used for agent routing. Automatically populated by the agent.
