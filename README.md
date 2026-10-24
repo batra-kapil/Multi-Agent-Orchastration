@@ -4,6 +4,12 @@
 
 This repository contains the complete source code for the **Employee Onboarding Multi-Agent Orchestration solution** built using **Agentforce Summer '26 Beta** — demonstrated in the SF Bolt video on multi-agent orchestration.
 
+## 🎥 Video Tutorial
+
+[![Watch the video tutorial](https://img.youtube.com/vi/lKZZ1zUgadw/maxresdefault.jpg)](https://www.youtube.com/watch?v=lKZZ1zUgadw)
+
+▶️ [Watch on YouTube](https://www.youtube.com/watch?v=lKZZ1zUgadw)
+
 ---
 
 ## What Is This?
